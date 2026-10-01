@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doceria do Prikito Junior</title>
+  <!-- Font Awesome para ícones (opcional, mas útil) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Reset e estilos globais */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #fff7f0 0%, #ffe9d6 100%);
+      min-height: 100vh;
+      color: #4a2e1e;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 1300px;
+      width: 100%;
+      background: rgba(255, 248, 240, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 3rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 6px 12px rgba(0, 0, 0, 0.05);
+      padding: 2rem 2rem 3rem;
+      border: 1px solid rgba(255, 215, 175, 0.5);
+    }
+
+    /* Cabeçalho com logo e título */
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      gap: 1.5rem;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .logo-svg {
+      width: 90px;
+      height: 90px;
+      filter: drop-shadow(0 8px 12px rgba(194, 120, 60, 0.3));
+    }
+
+    .brand h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #6b3e1f;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      text-shadow: 2px 2px 0 #ffd7b0;
+    }
+
+    .brand p {
+      font-size: 1rem;
+      color: #b17a4b;
+      font-weight: 500;
+      margin-top: 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .brand p i {
+      color: #d68b4a;
+    }
+
+    /* Ícone do carrinho */
+    .cart-icon {
+      background: #ffffffd9;
+      backdrop-filter: blur(6px);
+      border-radius: 60px;
+      padding: 0.8rem 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 10px 18px rgba(160, 100, 50, 0.15);
+      border: 2px solid #ffe0c0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+      color: #633f24;
+      font-size: 1.2rem;
+    }
+
+    .cart-icon:hover {
+      background: #ffffff;
+      transform: scale(1.02);
+      border-color: #d68b4a;
+    }
+
+    .cart-count {
+      background: #b36b2c;
+      color: white;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    /* Subtítulo / chamada */
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #5b3418;
+      margin: 1rem 0 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      border-left: 8px solid #d68b4a;
+      padding-left: 1.5rem;
+    }
+
+    .section-title i {
+      color: #d68b4a;
+      font-size: 2rem;
+    }
+
+    /* Grid de doces */
+    .candies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 1.8rem;
+      margin-bottom: 3rem;
+    }
+
+    .candy-card {
+      background: #fffcf8;
+      border-radius: 2rem;
+      padding: 1.5rem 1.2rem 1.8rem;
+      box-shadow: 0 12px 24px -8px rgba(120, 70, 30, 0.15);
+      border: 1px solid #ffe3ca;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .candy-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 28px -12px rgba(150, 90, 40, 0.25);
+      border-color: #e6b282;
+    }
+
+    .candy-emoji {
+      font-size: 3.4rem;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      filter: drop-shadow(2px 6px 8px rgba(200, 140, 80, 0.2));
+    }
+
+    .candy-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #4d2e18;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.2px;
+    }
+
+    .candy-desc {
+      font-size: 0.9rem;
+      color: #9b7a5e;
+      margin-bottom: 0.8rem;
+      font-weight: 400;
+      min-height: 2.5rem;
+    }
+
+    .candy-price {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #b45f1b;
+      margin-bottom: 1rem;
+      background: #fff2e6;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      display: inline-block;
+    }
+
+    .add-btn {
+      background: linear-gradient(135deg, #d68b4a, #b96b2c);
+      color: white;
+      border: none;
+      border-radius: 60px;
+      padding: 0.8rem 1.6rem;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      box-shadow: 0 8px 14px rgba(185, 107, 44, 0.3);
+      transition: all 0.2s;
+      width: 100%;
+      letter-spacing: 0.3px;
+    }
+
+    .add-btn:hover {
+      background: linear-gradient(135deg, #c07a3a, #a55d23);
+      box-shadow: 0 12px 18px rgba(185, 107, 44, 0.4);
+      transform: scale(1.02);
+    }
+
+    .add-btn i {
+      font-size: 1rem;
+    }
+
+    /* Área do carrinho (modal / painel) */
+    .cart-panel {
+      background: #fffaf3;
+      border-radius: 2rem;
+      padding: 2rem 2rem 1.8rem;
+      box-shadow: inset 0 1px 8px rgba(255, 255, 255, 0.8), 0 18px 30px -10px rgba(100, 60, 20, 0.2);
+      border: 1px solid #f5d6b8;
+      margin-top: 1.5rem;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .cart-header h2 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #4d2e18;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .cart-header h2 i {
+      color: #d68b4a;
+    }
+
+    .clear-cart-btn {
+      background: #ffe3d0;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      color: #8f5b34;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .clear-cart-btn:hover {
+      background: #ffd7bb;
+      color: #6b3e1f;
+    }
+
+    .cart-items-list {
+      max-height: 280px;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: white;
+      padding: 0.8rem 1.2rem;
+      border-radius: 60px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+      border: 1px solid #f0dac8;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .cart-item-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex: 2;
+    }
+
+    .cart-item-emoji {
+      font-size: 1.8rem;
+    }
+
+    .cart-item-name {
+      font-weight: 600;
+      color: #3d281b;
+      font-size: 1.05rem;
+    }
+
+    .cart-item-price {
+      font-weight: 700;
+      color: #b45f1b;
+      background: #fff0e2;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.95rem;
+    }
+
+    .cart-item-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .cart-item-actions button {
+      background: #f5e3d4;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #6b3e1f;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.15s;
+    }
+
+    .cart-item-actions button:hover {
+      background: #e2c7b0;
+    }
+
+    .cart-item-qty {
+      font-weight: 700;
+      min-width: 24px;
+      text-align: center;
+      color: #2f1d0f;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.2rem;
+      border-top: 2px dashed #e6cbb6;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #4d2e18;
+      margin-bottom: 1.8rem;
+    }
+
+    .cart-total span:last-child {
+      color: #b45f1b;
+      font-size: 1.8rem;
+    }
+
+    .checkout-btn {
+      background: linear-gradient(135deg, #27ae60, #1e8a4c);
+      border: none;
+      width: 100%;
+      padding: 1.2rem;
+      border-radius: 80px;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      cursor: pointer;
+      box-shadow: 0 16px 24px -6px rgba(39, 174, 96, 0.4);
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+      border: 1px solid #1e8a4c;
+    }
+
+    .checkout-btn:hover {
+      background: linear-gradient(135deg, #219653, #187a40);
+      transform: scale(1.01);
+      box-shadow: 0 20px 28px -8px rgba(39, 174, 96, 0.5);
+    }
+
+    .checkout-btn i {
+      font-size: 1.5rem;
+    }
+
+    .empty-cart-message {
+      text-align: center;
+      color: #b99a80;
+      padding: 2rem 0;
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+
+    /* Rodapé */
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      color: #b48b6a;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* Responsividade */
+    @media (max-width: 700px) {
+      body {
+        padding: 0.8rem;
+      }
+      .container {
+        padding: 1.5rem 1.2rem;
+      }
+      .brand h1 {
+        font-size: 1.8rem;
+      }
+      .logo-svg {
+        width: 70px;
+        height: 70px;
+      }
+      .cart-icon {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+      }
+      .candies-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1rem;
+      }
+      .candy-card {
+        padding: 1rem 0.8rem 1.2rem;
+      }
+      .candy-name {
+        font-size: 1.1rem;
+      }
+      .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .cart-item-actions {
+        align-self: flex-end;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Cabeçalho -->
+    <header>
+      <div class="logo-area">
+        <!-- Logo: cachorro confeiteiro em SVG -->
+        <svg class="logo-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Orelhas -->
+          <ellipse cx="38" cy="38" rx="16" ry="22" fill="#B87B4A" transform="rotate(-15 38 38)"/>
+          <ellipse cx="82" cy="38" rx="16" ry="22" fill="#B87B4A" transform="rotate(15 82 38)"/>
+          <!-- Cabeça -->
+          <circle cx="60" cy="60" r="38" fill="#E6B17E"/>
+          <!-- Focinho (parte inferior) -->
+          <ellipse cx="60" cy="78" rx="22" ry="18" fill="#F5D6B8"/>
+          <!-- Nariz -->
+          <ellipse cx="60" cy="72" rx="8" ry="6" fill="#3D281B"/>
+          <!-- Olhos -->
+          <circle cx="45" cy="53" r="5" fill="#2C1A0E"/>
+          <circle cx="75" cy="53" r="5" fill="#2C1A0E"/>
+          <!-- Brilho dos olhos -->
+          <circle cx="43" cy="51" r="1.5" fill="white"/>
+          <circle cx="73" cy="51" r="1.5" fill="white"/>
+          <!-- Sobrancelhas -->
+          <path d="M38 44 L50 40" stroke="#6B3E1F" stroke-width="3" stroke-linecap="round"/>
+          <path d="M82 44 L70 40" stroke="#6B3E1F" stroke-width="3" stroke-linecap="round"/>
+          <!-- Chapéu de confeiteiro -->
+          <path d="M40 28 Q60 8 80 28 L82 38 Q60 32 38 38 Z" fill="#FFFFFF" stroke="#D68B4A" stroke-width="2.5"/>
+          <rect x="42" y="20" width="36" height="10" rx="6" fill="#FFFFFF" stroke="#D68B4A" stroke-width="2.5"/>
+          <circle cx="60" cy="15" r="6" fill="#E63946" stroke="#B22222" stroke-width="2"/>
+          <!-- Globo de confeiteiro (saco de confeitar) ao lado -->
+          <path d="M100 70 L112 62 L118 74 L106 82 Z" fill="#F5D6B8" stroke="#B87B4A" stroke-width="2.5"/>
+          <path d="M108 68 L116 63" stroke="#D68B4A" stroke-width="3" stroke-linecap="round"/>
+          <!-- Bochechas rosadas -->
+          <circle cx="32" cy="65" r="7" fill="#F9C7A0" opacity="0.6"/>
+          <circle cx="88" cy="65" r="7" fill="#F9C7A0" opacity="0.6"/>
+        </svg>
+
+        <div class="brand">
+          <h1>Doceria do Prikito Junior</h1>
+          <p><i class="fas fa-paw"></i> O doce sabor da amizade</p>
+        </div>
+      </div>
+
+      <div class="cart-icon" id="cartButton">
+        <i class="fas fa-shopping-bag"></i>
+        <span>Meu carrinho</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+    </header>
+
+    <!-- Título da seção -->
+    <div class="section-title">
+      <i class="fas fa-candy-cane"></i>
+      Nossos doces artesanais
+    </div>
+
+    <!-- Grid de produtos -->
+    <div class="candies-grid" id="candiesGrid"></div>
+
+    <!-- Carrinho (painel sempre visível, mas pode ser acessado pelo botão) -->
+    <div class="cart-panel" id="cartPanel">
+      <div class="cart-header">
+        <h2><i class="fas fa-shopping-cart"></i> Seu carrinho</h2>
+        <button class="clear-cart-btn" id="clearCartBtn"><i class="fas fa-trash-alt"></i> Limpar</button>
+      </div>
+      <div class="cart-items-list" id="cartItemsList">
+        <!-- Itens serão inseridos via JS -->
+      </div>
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cartTotal">R$ 0,00</span>
+      </div>
+      <button class="checkout-btn" id="checkoutBtn">
+        <i class="fab fa-whatsapp"></i> Finalizar pedido pelo WhatsApp
+      </button>
+    </div>
+
+    <footer>
+      <i class="fas fa-dog"></i> Doceria do Prikito Junior — Feito com amor e açúcar
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      // Número de WhatsApp para onde o pedido será enviado (código do país + DDD + número)
+      // Formato: 55 + 83 + 81259149  (Brasil, Paraíba, número)
+      const WHATSAPP_NUMBER = '558381259149';
+
+      // Lista dos 10 sabores de doces
+      const products = [
+        { id: 1, name: 'Brigadeiro Gourmet', desc: 'Chocolate belga com granulado', price: 5.50, emoji: '🍫' },
+        { id: 2, name: 'Beijinho de Coco', desc: 'Coco fresco e leite condensado', price: 5.00, emoji: '🥥' },
+        { id: 3, name: 'Cajuzinho', desc: 'Castanha de caju caramelizada', price: 6.00, emoji: '🥜' },
+        { id: 4, name: 'Quindim', desc: 'Gema, coco e açúcar cristal', price: 7.50, emoji: '🍮' },
+        { id: 5, name: 'Bem-Casado', desc: 'Doce de leite e massa amanteigada', price: 6.50, emoji: '💑' },
+        { id: 6, name: 'Sonho de Valsa', desc: 'Recheio cremoso de castanha', price: 6.90, emoji: '🌰' },
+        { id: 7, name: 'Trufa de Maracujá', desc: 'Chocolate branco com maracujá', price: 8.00, emoji: '🍫' },
+        { id: 8, name: 'Paçoca Doce', desc: 'Amendoim e açúcar mascavo', price: 4.50, emoji: '🥜' },
+        { id: 9, name: 'Olho de Sogra', desc: 'Ameixa e coco com doce de leite', price: 7.00, emoji: '👁️' },
+        { id: 10, name: 'Camafeu de Nozes', desc: 'Nozes e fondant caramelizado', price: 9.00, emoji: '🌰' }
+      ];
+
+      // Carrinho: array de objetos { id, name, price, quantity, emoji }
+      let cart = [];
+
+      // Elementos DOM
+      const candiesGrid = document.getElementById('candiesGrid');
+      const cartItemsList = document.getElementById('cartItemsList');
+      const cartCount = document.getElementById('cartCount');
+      const cartTotal = document.getElementById('cartTotal');
+      const clearCartBtn = document.getElementById('clearCartBtn');
+      const checkoutBtn = document.getElementById('checkoutBtn');
+      const cartButton = document.getElementById('cartButton');
+      const cartPanel = document.getElementById('cartPanel');
+
+      // Formatar preço para Real brasileiro
+      function formatPrice(value) {
+        return `R$ ${value.toFixed(2).replace('.', ',')}`;
+      }
+
+      // Renderizar os cards de doces
+      function renderProducts() {
+        candiesGrid.innerHTML = products.map(product => `
+          <div class="candy-card" data-id="${product.id}">
+            <div class="candy-emoji">${product.emoji}</div>
+            <div class="candy-name">${product.name}</div>
+            <div class="candy-desc">${product.desc}</div>
+            <div class="candy-price">${formatPrice(product.price)}</div>
+            <button class="add-btn" data-id="${product.id}">
+              <i class="fas fa-plus-circle"></i> Adicionar
+            </button>
+          </div>
+        `).join('');
+
+        // Adicionar eventos aos botões "Adicionar"
+        document.querySelectorAll('.add-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const id = Number(e.currentTarget.dataset.id);
+            addToCart(id);
+          });
+        });
+      }
+
+      // Adicionar item ao carrinho
+      function addToCart(productId) {
+        const product = products.find(p => p.id === productId);
+        if (!product) return;
+
+        const existingItem = cart.find(item => item.id === productId);
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            emoji: product.emoji,
+            quantity: 1
+          });
+        }
+        updateCartUI();
+      }
+
+      // Atualizar a interface do carrinho (lista, contador, total)
+      function updateCartUI() {
+        // Atualizar contador total de itens (soma das quantidades)
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCount.textContent = totalItems;
+
+        // Renderizar lista de itens
+        if (cart.length === 0) {
+          cartItemsList.innerHTML = `<div class="empty-cart-message"><i class="fas fa-shopping-basket"></i> Seu carrinho está vazio... que tal um docinho?</div>`;
+        } else {
+          cartItemsList.innerHTML = cart.map(item => `
+            <div class="cart-item" data-id="${item.id}">
+              <div class="cart-item-info">
+                <span class="cart-item-emoji">${item.emoji}</span>
+                <span class="cart-item-name">${item.name}</span>
+                <span class="cart-item-price">${formatPrice(item.price)}</span>
+              </div>
+              <div class="cart-item-actions">
+                <button class="decrease-btn" data-id="${item.id}">−</button>
+                <span class="cart-item-qty">${item.quantity}</span>
+                <button class="increase-btn" data-id="${item.id}">+</button>
+              </div>
+            </div>
+          `).join('');
+
+          // Adicionar eventos aos botões de aumentar/diminuir
+          document.querySelectorAll('.decrease-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              const id = Number(e.currentTarget.dataset.id);
+              changeQuantity(id, -1);
+            });
+          });
+          document.querySelectorAll('.increase-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              const id = Number(e.currentTarget.dataset.id);
+              changeQuantity(id, 1);
+            });
+          });
+        }
+
+        // Calcular e exibir total
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        cartTotal.textContent = formatPrice(total);
+      }
+
+      // Alterar quantidade de um item (delta = +1 ou -1)
+      function changeQuantity(productId, delta) {
+        const itemIndex = cart.findIndex(item => item.id === productId);
+        if (itemIndex === -1) return;
+
+        const newQuantity = cart[itemIndex].quantity + delta;
+        if (newQuantity <= 0) {
+          cart.splice(itemIndex, 1);
+        } else {
+          cart[itemIndex].quantity = newQuantity;
+        }
+        updateCartUI();
+      }
+
+      // Limpar carrinho
+      function clearCart() {
+        cart = [];
+        updateCartUI();
+      }
+
+      // Finalizar compra: enviar pedido para o WhatsApp
+      function checkout() {
+        if (cart.length === 0) {
+          alert('Adicione pelo menos um doce ao carrinho antes de finalizar o pedido. 🍬');
+          return;
+        }
+
+        // Construir mensagem
+        let message = '🐶 *Doceria do Prikito Junior* 🐶\n\n';
+        message += '*Pedido:*\n';
+        cart.forEach(item => {
+          const subtotal = item.price * item.quantity;
+          message += `• ${item.emoji} ${item.name} — ${item.quantity}x — ${formatPrice(subtotal)}\n`;
+        });
+
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        message += `\n*Total do pedido:* ${formatPrice(total)}`;
+        message += '\n\n_Obrigado pela preferência! Volte sempre!_ 🐕🍰';
+
+        // Codificar mensagem para URL
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+        // Abrir WhatsApp em nova aba
+        window.open(whatsappUrl, '_blank');
+
+        // Opcional: limpar carrinho após finalizar (comentado para manter os itens caso o usuário queira voltar)
+        // clearCart();
+        // alert('Pedido enviado! O carrinho foi esvaziado.');
+      }
+
+      // Event listeners principais
+      clearCartBtn.addEventListener('click', clearCart);
+      checkoutBtn.addEventListener('click', checkout);
+
+      // Rolar até o carrinho ao clicar no ícone do carrinho (opcional)
+      cartButton.addEventListener('click', () => {
+        cartPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+
+      // Inicializar a página
+      function init() {
+        renderProducts();
+        updateCartUI(); // Começa vazio
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>
